@@ -7,17 +7,5 @@ case "$1" in
     version="$2"
 esac
 
-# Copy the version specific files into cron directory
-
-mkdir -p $OPENSHIFT_CRON_DIR/{configuration,log,etc,data,pid,run}
-
 # Create additional directories required by JENKINS
-mkdir -p ${OPENSHIFT_NEW_RELIC_DIR}/logs
-
-
-
-
-
-
-
-
+mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
