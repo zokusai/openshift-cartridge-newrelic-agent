@@ -1,0 +1,12 @@
+---
+locked_files:
+- bin/
+- bin/*
+- metadata/
+- metadata/*
+- env/
+- env/*
+- newrelic*.jar
+- nrcerts
+processed_templates:
+- "**/*.erb"

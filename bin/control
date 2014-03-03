@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+function status() {
+  client_result "New Relic agent is enabled."
+}
+
+case "$1" in
+  status)       status ;;
+  *)         	  exit 0
+esac
