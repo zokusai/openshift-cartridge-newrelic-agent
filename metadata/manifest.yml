@@ -1,13 +1,13 @@
 ---
-Name: new-relic-agent
-Cartridge-Short-Name: NEW_RELIC
+Name: newrelic-agent
+Cartridge-Short-Name: NEWRELIC
 Cartridge-Version: '1.0.0'
 Compatible-Versions:
 - '1.0.0'
 Cartridge-Vendor: produban
 Display-Name: New Relic Agent
-Description: The New Relic client connects to your New Relic account and publish 
-  metrics for your application. 
+Description: The New Relic client connects to your New Relic account and publish
+  metrics for your application.
 Version: '3.4.2'
 License: New Relic
 License-Url: https://docs.newrelic.com/docs/licenses/licenses
@@ -17,21 +17,19 @@ Categories:
 - plugin
 - new_relic
 Cart-Data:
-- Key: job_url
-  Type: cart_data
-  Description: URL for the build job submitted on jenkins server
 Website: http://newrelic.com/
+Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
 Help-Topics:
   Developer Center: https://docs.newrelic.com/docs/java/java-agent-self-installer
 Provides:
-- new-relic-agent-3.4.2
-- new-relic-agent
-Publishes: 
-Subscribes: 
+- newrelic-agent-3.4.2
+- newrelic-agent
+Publishes:
+Subscribes:
 Group-Overrides:
 - components:
   - web_framework
-  - new_relic
+  - newrelic
 Scaling:
   Min: 1
   Max: -1
