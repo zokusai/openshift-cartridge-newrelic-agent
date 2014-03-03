@@ -7,5 +7,13 @@ case "$1" in
     version="$2"
 esac
 
-# Create additional directories required by JENKINS
+# Create additional directories required
 mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
+
+# Add agent option
+MASTER_PRE_START=${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_jbossas
+touch $MASTER_PRE_START
+
+NEWRELIC_AGENT="-javaagent:${OPENSHIFT_NEWRELIC_DIR}/newrelic.jar"
+
+echo "export _JAVA_OPTIONS=\"${_JAVA_OPTIONS} ${NEWRELIC_AGENT}\"" >> $MASTER_PRE_START
