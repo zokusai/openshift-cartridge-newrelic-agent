@@ -15,7 +15,7 @@ Vendor: New Relic
 Categories:
 - embedded
 - plugin
-- new_relic
+- newrelic
 Cart-Data:
 Website: http://newrelic.com/
 Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
