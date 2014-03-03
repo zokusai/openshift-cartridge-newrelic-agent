@@ -22,7 +22,7 @@ common: &default_settings
   # Set the name of your application as you'd like it show up in New Relic.
   # If enable_auto_app_naming is false, the agent reports all data to this application.
   # Otherwise, the agent reports only background tasks (transactions for non-web applications)
-  # to this application. To report data to more than one application 
+  # to this application. To report data to more than one application
   # (useful for rollup reporting), separate the application names with ";".
   # For example, to report data to "My Application" and "My Application 2" use this:
   # app_name: My Application;My Application 2
@@ -95,7 +95,7 @@ common: &default_settings
   #proxy_user: username
   #proxy_password: password
 
-  # Limits the number of lines to capture for each stack trace. 
+  # Limits the number of lines to capture for each stack trace.
   # Default is 30
   max_stack_trace_lines: 30
 
@@ -106,7 +106,7 @@ common: &default_settings
   capture_params: false
 
   # Tells transaction tracer and error collector to not to collect
-  # specific http request parameters. 
+  # specific http request parameters.
   #ignored_params: credit_card, ssn, password
 
   # Similar to capture_params but for message handling.
@@ -117,7 +117,7 @@ common: &default_settings
   capture_messaging_params: false
 
   # Tells transaction tracer and error collector to not to collect
-  # specific message properties. 
+  # specific message properties.
   #ignored_messaging_params: userid, authtoken
 
   # Transaction tracer captures deep information about slow
@@ -168,7 +168,7 @@ common: &default_settings
     # Default is true.
     explain_enabled: true
 
-    # Threshold for query execution time below which query plans will not 
+    # Threshold for query execution time below which query plans will not
     # not be captured.  Relevant only when `explain_enabled` is true.
     # Default is 0.5 seconds.
     explain_threshold: 0.5
@@ -201,7 +201,7 @@ common: &default_settings
     ignore_status_codes: 404
 
   # Analytics Events are used for Histograms and Percentiles. Unaggregated data is collected
-  # for each web transaction and sent to the server on harvest. 
+  # for each web transaction and sent to the server on harvest.
   analytics_events:
 
     # Set to false to disable analytics events.
@@ -234,7 +234,7 @@ common: &default_settings
   # New Relic Real User Monitoring gives you insight into the performance real users are
   # experiencing with your website. This is accomplished by measuring the time it takes for
   # your users' browsers to download and render your web pages by injecting a small amount
-  # of JavaScript code into the header and footer of each page. 
+  # of JavaScript code into the header and footer of each page.
   browser_monitoring:
 
     # By default the agent automatically inserts API calls in compiled JSPs to
@@ -259,15 +259,15 @@ common: &default_settings
 
 development:
   <<: *default_settings
-  app_name: <%= ENV['OPENSHIFT_HTTPD_DIR'] %> (Development)
+  app_name: <%= ENV['OPENSHIFT_APP_NAME'] %> (Development)
 
 test:
   <<: *default_settings
-  app_name: <%= ENV['OPENSHIFT_HTTPD_DIR'] %> (Test)
+  app_name: <%= ENV['OPENSHIFT_APP_NAME'] %> (Test)
 
 production:
   <<: *default_settings
 
 staging:
   <<: *default_settings
-  app_name: <%= ENV['OPENSHIFT_HTTPD_DIR'] %> (Staging)
+  app_name: <%= ENV['OPENSHIFT_APP_NAME'] %> (Staging)
