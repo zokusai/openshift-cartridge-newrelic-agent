@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# Remove javaagent option
+
+HOOKS="${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_jbossas
+${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_restart_jbossas
+${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_reload_jbossas"
+
+
+for hook in $HOOKS; do
+  sed --in-place=.bak "/source \${OPENSHIFT_NEWRELIC_DIR}conf\/javaagent.conf/d" $hook
+done
+
