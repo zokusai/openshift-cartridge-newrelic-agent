@@ -21,7 +21,7 @@ for hook in $HOOKS; do
     chmod 700 $hook 
   fi
 
-  if [ -w "${MASTER_PRE_START}" ]; then
+  if [ -w "$hook" ]; then
     echo -e "\nsource \${OPENSHIFT_NEWRELIC_DIR}conf/javaagent.conf" >> $hook
   else
     echo "WARNING: The file $hook is not writable."
