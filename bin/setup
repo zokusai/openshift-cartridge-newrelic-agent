@@ -15,7 +15,8 @@ MASTER_PRE_START=${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_jbossas
 NEWRELIC_AGENT="-javaagent:${OPENSHIFT_NEWRELIC_DIR}newrelic.jar"
 
 if [ ! -e "${MASTER_PRE_START}" ]; then
-  echo '#!/bin/bash' >> ${MASTER_PRE_START}  
+  echo '#!/bin/bash' >> ${MASTER_PRE_START} 
+  chmod 700 ${MASTER_PRE_START} 
 fi
 
 if [ -w "${MASTER_PRE_START}" ]; then
