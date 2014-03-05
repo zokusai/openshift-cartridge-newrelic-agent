@@ -14,7 +14,7 @@ PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
 client_message "The primary cartridge name is: ${PRIMARY_CART}"
 
 case "$PRIMARY_CART" in 
-  user1|node*) 
+  jbossas) 
     client_message "Valid primary cartridge detected."
     CONFIG_SUFFIX=$PRIMARY_CART
     ;;
@@ -38,7 +38,7 @@ for hook in $HOOKS; do
 
   if [ ! -e "$hook" ]; then
     echo '#!/bin/bash' >> $hook
-    chmod 700 $hook 
+    chmod 700 $hook
   fi
 
   if [ -w "$hook" ]; then
