@@ -10,7 +10,7 @@ mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
 
 # Detect primary cartrigde type
 
-PRIMARY_NAME=primary_cartridge_short_name
+PRIMARY_NAME=$(primary_cartridge_short_name)
 client_message "The primary cartridge name is: ${PRIMARY_NAME}"
 
 case "$PRIMARY_NAME" in 
