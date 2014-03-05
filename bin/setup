@@ -14,7 +14,7 @@ ${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_reload_jbossas"
 
 
 for hook in $HOOKS; do
-  client_message "Processing $f"
+  client_message "Processing $hook"
 
   if [ ! -e "$hook" ]; then
     echo '#!/bin/bash' >> $hook
