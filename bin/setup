@@ -2,15 +2,33 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+
 # Create additional directories required
 
 mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
 
+
+# Detect primary cartrigde type
+
+PRIMARY_NAME=primary_cartridge_short_name()
+client_message "The primary cartridge name is: ${PRIMARY_NAME}"
+
+case "$PRIMARY_NAME" in 
+  user1|node*) 
+    client_message "Valid primary cartridge detected."
+    ;;
+  *)
+    # Invalid cartridge type
+    exit 109 
+    ;;
+esac
+
+
 # Add javaagent option
 
-HOOKS="${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_jbossas
-${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_restart_jbossas
-${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_reload_jbossas"
+HOOKS="${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_start_${PRIMARY_NAME}
+${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_restart_${PRIMARY_NAME}
+${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_reload_${PRIMARY_NAME}"
 
 
 for hook in $HOOKS; do
@@ -22,7 +40,7 @@ for hook in $HOOKS; do
   fi
 
   if [ -w "$hook" ]; then
-    echo -e "\nsource \${OPENSHIFT_NEWRELIC_DIR}conf/javaagent.conf" >> $hook
+    echo -e "source \${OPENSHIFT_NEWRELIC_DIR}conf/javaagent.conf" >> $hook
   else
     client_message "WARNING: The file $hook is not writable."
   fi
