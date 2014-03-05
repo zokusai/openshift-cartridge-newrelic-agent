@@ -1,14 +1,22 @@
-#!/bin/bash -e
+#!/bin/bash -eu
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+
+# Detect primary cartrigde type
+
+PRIMARY_CART=$(primary_cartridge_name)
+
 
 # Remove javaagent option
 
-HOOKS="${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_jbossas
-${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_restart_jbossas
-${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_reload_jbossas"
+HOOKS="${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_start_${PRIMARY_CART}
+${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_restart_${PRIMARY_CART}
+${OPENSHIFT_REPO_DIR}/.openshift/action_hooks/pre_reload_${PRIMARY_CART}"
 
 
 for hook in $HOOKS; do
-  sed --in-place=.bak "/source \${OPENSHIFT_NEWRELIC_DIR}conf\/javaagent.conf/d" $hook
+  sed --in-place=.bak "/\${OPENSHIFT_NEWRELIC_DIR}/d" $hook
   chmod ugo-x ${hook}.bak 
 done
 

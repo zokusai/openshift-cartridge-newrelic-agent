@@ -3,7 +3,7 @@ Name: newrelic-agent
 Cartridge-Short-Name: NEWRELIC
 Cartridge-Version: '1.0.0'
 Compatible-Versions:
-- '1.0.0'
+  - '1.0.0'
 Cartridge-Vendor: produban
 Display-Name: New Relic Agent
 Description: The New Relic client connects to your New Relic account and publish
