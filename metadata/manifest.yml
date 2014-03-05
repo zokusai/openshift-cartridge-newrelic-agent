@@ -13,23 +13,26 @@ License: New Relic
 License-Url: https://docs.newrelic.com/docs/licenses/licenses
 Vendor: New Relic
 Categories:
-- embedded
-- plugin
-- newrelic
+  - embedded
+  - plugin
+  - newrelic
 Cart-Data:
+  - Key: OPENSHIFT_NEWRELIC_LICENSE_KEY
+    Type: environment
+    Description: "New Relic license key."
 Website: http://newrelic.com/
 Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
 Help-Topics:
   Developer Center: https://docs.newrelic.com/docs/java/java-agent-self-installer
 Provides:
-- newrelic-agent-3.4.2
-- newrelic-agent
+  - newrelic-agent-3.4.2
+  - newrelic-agent
 Publishes:
 Subscribes:
 Group-Overrides:
-- components:
-  - web_framework
-  - newrelic
+  - components:
+    - web_framework
+    - newrelic
 Scaling:
   Min: 1
   Max: -1
