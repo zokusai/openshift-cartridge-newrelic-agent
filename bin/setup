@@ -10,7 +10,7 @@ mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
 
 # Detect primary cartrigde type
 
-PRIMARY_CART=$(primary_cartridge_name)
+PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
 client_message "The primary cartridge name is: ${PRIMARY_CART}"
 
 case "$PRIMARY_CART" in 
