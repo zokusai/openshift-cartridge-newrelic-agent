@@ -1,9 +1,9 @@
-Openshift New Relic Agent cartridge
+OpenShift New Relic Agent cartridge
 ===================================
 
 An embedded cartridge to enable New Relic Monitoring for Java apps deployed on OpenShift JBoss AS 7.
 
-The cartridge include the newrelic agent version 3.4.2, property of New Relic. To see detailed information about usage conditions see https://docs.newrelic.com/docs/licenses/licenses
+The cartridge include the version 3.4.2 of the newrelic java agent, property of New Relic. To see detailed information about usage conditions see https://docs.newrelic.com/docs/licenses/licenses
 
 Requirements
 ------------
