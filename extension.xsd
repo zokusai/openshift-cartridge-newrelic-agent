@@ -9,8 +9,8 @@
           <jaxb:package name="com.newrelic.agent.extension.beans"/>
         </jaxb:schemaBindings>
       </xs:appinfo>
-    </xs:annotation>    
-    
+    </xs:annotation>
+
     <xs:element name="extension">
         <xs:annotation>
             <xs:documentation>
@@ -42,6 +42,13 @@
                                             <xs:complexType/>
                                         </xs:element>
                                         <xs:choice>
+                                            <xs:element name="methodAnnotation" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>
+                                                        The full name of an annotation class including the package name.  All methods that are marked with this annotation will be matched. 
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
                                             <xs:sequence>
                                                 <xs:choice minOccurs="1" maxOccurs="1">
                                                     <xs:element name="className">
@@ -52,49 +59,73 @@
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:simpleContent>
-                                                                <xs:extension base="xs:string"/>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute default="false" name="includeSubclasses" type="xs:boolean">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                If false, this works as an exact class matcher.  If true, the
+                                                                                methods on the class with the matching name will be matched along 
+                                                                                with the matching methods on any child class of the class.
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:attribute>
+                                                                </xs:extension>
                                                             </xs:simpleContent>
                                                         </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="interfaceName" type="xs:string">
+                                                        <xs:annotation>
+                                                            <xs:documentation>
+                                                                The case sensitive name of an interface whose implementation classes will be matched.
+                                                            </xs:documentation>
+                                                        </xs:annotation>
                                                     </xs:element>
                                                 </xs:choice>
                                                 <xs:element name="method" minOccurs="1" maxOccurs="unbounded">
                                                     <xs:complexType>
-														<xs:choice minOccurs="1">			    
-			                                                <xs:sequence>
-	                                                            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"
-	                                                                nillable="false">
-	                                                                <xs:annotation>
-	                                                                    <xs:documentation>
-	                                                                        The exact case sensitive name of the method to
-	                                                                        match.
-	                                                                    </xs:documentation>
-	                                                                </xs:annotation>
-	                                                            </xs:element>
-	                                                            <xs:element name="parameters" minOccurs="0" maxOccurs="1">
-	                                                                <xs:annotation>
-	                                                                    <xs:documentation>
-	                                                                        The parameter types of the method specified in order.  
-	                                                                        If the parameters element is left off all methods 
-	                                                                        matching the name will be matched including private
-	                                                                        and protected declarations.
-	                                                                    </xs:documentation>
-	                                                                </xs:annotation>
-	                                                                <xs:complexType>
-	                                                                    <xs:sequence>
-	                                                                        <xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-	                                                                            <xs:annotation>
-	                                                                                <xs:documentation>
-	                                                                                    A parameter type.  This is either a case sensitive class name
-	                                                                                    including the package name or a primitive 
-	                                                                                    type (boolean, char, int, float, double, etc).
-	                                                                                </xs:documentation>
-	                                                                            </xs:annotation>
-	                                                                        </xs:element>
-	                                                                    </xs:sequence>
-	                                                                </xs:complexType>
-	                                                            </xs:element>
-	                                                        </xs:sequence>
-		                                                </xs:choice>
+                                                        <xs:choice minOccurs="1">
+                                                            <xs:element name="returnType" type="xs:string" minOccurs="0">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>
+                                                                        The case sensitive name of a class indicating a return type to match.  All methods that return this class type will be matched.
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:element>
+                                                            <xs:sequence>
+                                                                <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"
+                                                                    nillable="false">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>
+                                                                            The exact case sensitive name of the method to
+                                                                            match.
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="parameters" minOccurs="0" maxOccurs="1">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>
+                                                                            The parameter types of the method specified in order.  
+                                                                            If the parameters element is left off all methods 
+                                                                            matching the name will be matched including private
+                                                                            and protected declarations.
+                                                                        </xs:documentation>
+                                                                    </xs:annotation>
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>
+                                                                                        A parameter type.  This is either a case sensitive class name
+                                                                                        including the package name or a primitive 
+                                                                                        type (boolean, char, int, float, double, etc).
+                                                                                    </xs:documentation>
+                                                                                </xs:annotation>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:choice>
                                                         
                                                     </xs:complexType>
                                                 </xs:element>
@@ -137,6 +168,22 @@
                                             </xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
+                                    <xs:attribute name="transactionType" default="background">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                Sets the type of the transaction. Possible values are "web" and
+                                                "background", with "background" as the default.
+
+                                                When set to "web" the transaction will be reported as a web transaction.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="background"/>
+                                                <xs:enumeration value="web"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -160,7 +207,7 @@
             <xs:attribute name="enabled" type="xs:boolean" default="true">
                 <xs:annotation>
                     <xs:documentation>
-                        Enables and disabled this extension.
+                        Enables and disables this extension.
                     </xs:documentation>
                 </xs:annotation>
             </xs:attribute>
