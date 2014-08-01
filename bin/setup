@@ -18,6 +18,10 @@ case "$PRIMARY_CART" in
     client_message "Valid primary cartridge detected."
     CONFIG_SUFFIX=$PRIMARY_CART
     ;;
+  jbossews)
+    client_message "Valid primary cartridge detected."
+    CONFIG_SUFFIX=$PRIMARY_CART
+    ;;
   *)
     # Invalid cartridge type
     client_error "Invalid primary cartridge: ${PRIMARY_CART}. Valid ones: jbossas"
