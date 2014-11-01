@@ -13,19 +13,17 @@ mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
 PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
 client_message "The primary cartridge name is: ${PRIMARY_CART}"
 
-case "$PRIMARY_CART" in 
-  jbossas) 
+case "$PRIMARY_CART" in
+  jboss*)
     client_message "Valid primary cartridge detected."
     CONFIG_SUFFIX=$PRIMARY_CART
     ;;
-  jbosseap) 
-    client_message "Valid primary cartridge detected."
-    CONFIG_SUFFIX=$PRIMARY_CART
-    ;;
+
   *)
     # Invalid cartridge type
-    client_error "Invalid primary cartridge: ${PRIMARY_CART}. Valid ones: jbossas, jbosseap"
-    exit 109 
+    client_error "Invalid primary cartridge: ${PRIMARY_CART}"
+    client_error "Only JBoss cartridges are allowed: jbossas, jbosseap, jbossews"
+    exit 109
     ;;
 esac
 
