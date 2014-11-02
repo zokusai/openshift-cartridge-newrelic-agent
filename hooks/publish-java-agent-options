@@ -1,3 +1,0 @@
-#!/bin/bash
-JAVA_OPTS_EXT="${JAVA_OPTS_EXT} -javaagent:${OPENSHIFT_NEWRELIC_AGENT}"
-echo "JAVA_OPTS_EXT='${JAVA_OPTS_EXT}'"

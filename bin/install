@@ -4,4 +4,4 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 java_opts="${JAVA_OPTS_EXT:-} -javaagent:${OPENSHIFT_NEWRELIC_AGENT}"
 
-add_domain_env_var "JAVA_OPTS_EXT='${java_opts}'"
+add_domain_env_var "JAVA_OPTS_EXT=\"${java_opts}\""
