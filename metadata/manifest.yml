@@ -21,7 +21,7 @@ Cart-Data:
     Type: environment
     Description: "New Relic license key."
 Website: http://newrelic.com/
-Source-Url: https://github.com/tspring/openshift-cartridge-newrelic-agent.git
+Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
 Help-Topics:
   Developer Center: https://docs.newrelic.com/docs/java/java-agent-self-installer
 Provides:
