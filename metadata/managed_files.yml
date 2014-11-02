@@ -6,6 +6,8 @@ locked_files:
 - metadata/*
 - env/
 - env/*
+- hooks/
+- hooks/*
 - newrelic*.jar
 - nrcerts
 processed_templates:
