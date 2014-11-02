@@ -4,4 +4,6 @@ CHANGELOG
 v1.0.1
 -------
 
-* Update New Relic Java agent to 3.11.0 version 
+* Update New Relic Java agent to 3.11.0 version.
+* Change the mechanism of JAVA_OPT_EXTS publishing to domain environment
+  variable addition.
