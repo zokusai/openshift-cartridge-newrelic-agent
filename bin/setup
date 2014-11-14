@@ -27,26 +27,3 @@ case "$PRIMARY_CART" in
     ;;
 esac
 
-
-# Add javaagent option
-
-# HOOKS="${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_start_${PRIMARY_CART}
-# ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_restart_${PRIMARY_CART}
-# ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/pre_reload_${PRIMARY_CART}"
-# 
-# 
-# for hook in $HOOKS; do
-#   client_message "Processing $hook"
-# 
-#   if [ ! -e "$hook" ]; then
-#     echo '#!/bin/bash' >> $hook
-#     chmod 700 $hook
-#   fi
-# 
-#   if [ -w "$hook" ]; then
-#     echo -e "source \${OPENSHIFT_NEWRELIC_DIR}conf/javaagent_${CONFIG_SUFFIX}.conf" >> $hook
-#   else
-#     client_message "WARNING: The file $hook is not writable."
-#   fi
-# done
-
