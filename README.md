@@ -35,3 +35,8 @@ Remove
 ```
   rhc cartridge-remove newrelic -a <your_app_name>
 ```
+
+Known Issues
+------------
+
+* A **JAVA\_OPTS\_EXT** user defined environment variable will override the one defined by the cartridge, so you could inadvertently disable the agent.
