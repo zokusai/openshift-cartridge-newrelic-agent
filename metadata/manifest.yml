@@ -28,8 +28,8 @@ Provides:
   - newrelic-agent-3.11.0
   - newrelic-agent
 Publishes:
-#  publish-java-agent-options:
-#    Type: ENV:java-agent-options
+  publish-java-agent-options:
+    Type: "ENV:NET_TCP:db:newrelic"
 Subscribes:
 Group-Overrides:
   - components:

@@ -6,7 +6,13 @@ function status() {
   client_result "New Relic agent is enabled."
 }
 
+function start() {
+  client_result "New Relic agent started."
+}
+
+
 case "$1" in
   status)       status ;;
+  start)        start ;;
   *)         	  exit 0
 esac

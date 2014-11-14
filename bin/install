@@ -4,4 +4,5 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 # TODO: Test removal
 # XXX: What happens if JAVA_OPTS_EXT has values
-add_domain_env_var "JAVA_OPTS_EXT=-javaagent:${OPENSHIFT_NEWRELIC_AGENT}"
+
+#add_domain_env_var "JAVA_OPTS_EXT=-javaagent:${OPENSHIFT_NEWRELIC_AGENT}"
