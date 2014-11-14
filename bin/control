@@ -7,7 +7,7 @@ function status() {
 }
 
 function start() {
-  env_dir="${OPENSHIFT_NEWRELIC_DIR}/env"
+  env_dir="${OPENSHIFT_NEWRELIC_DIR}env"
   set_env_var 'JAVA_OPTS_EXT' "-javaagent:${OPENSHIFT_NEWRELIC_AGENT}" $env_dir
   client_result "New Relic agent started."
 }

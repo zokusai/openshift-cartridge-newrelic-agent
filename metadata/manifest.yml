@@ -29,7 +29,7 @@ Provides:
   - newrelic-agent
 Publishes:
   publish-java-agent-options:
-    Type: "ENV:NET_TCP:db:newrelic"
+    Type: ENV:NET_TCP:db:newrelic
 Subscribes:
 Group-Overrides:
   - components:

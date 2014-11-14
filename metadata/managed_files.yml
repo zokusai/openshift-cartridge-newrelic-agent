@@ -5,7 +5,6 @@ locked_files:
 - metadata/
 - metadata/*
 - env/
-- env/*
 - hooks/
 - hooks/*
 - newrelic*.jar
