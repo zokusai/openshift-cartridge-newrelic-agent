@@ -1,7 +1,17 @@
 ----------------------------------------------------------------
 
+This product includes 'ANTLR', which is released under the following license(s):
+    BSD-3 <http://opensource.org/licenses/BSD-3-Clause>
+
+----------------------------------------------------------------
+
 This product includes 'ASM', which is released under the following license(s):
     ASM (BSD-3) <http://asm.ow2.org/license.html>
+
+----------------------------------------------------------------
+
+This product includes 'Apache Cassandra', which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
 
 ----------------------------------------------------------------
 
@@ -25,6 +35,11 @@ This product includes 'JSON.simple', which is released under the following licen
 
 ----------------------------------------------------------------
 
+This product includes 'Jackson', which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
 This product includes 'LogBack', which is released under the following license(s):
     Eclipse Public License 1.0 <http://www.eclipse.org/legal/epl-v10.html>
 
@@ -40,7 +55,7 @@ This product includes 'SnakeYAML', which is released under the following license
 
 ----------------------------------------------------------------
 
-All other components of this product are: Copyright (c) 2010-2014 New Relic, Inc. All rights reserved.
+All other components of this product are: Copyright (c) 2010-2015 New Relic, Inc. All rights reserved.
 
 Certain inventions disclosed in this file may be claimed within patents owned or patent applications
 filed by New Relic, Inc. or third parties. Subject to the terms of this notice, New Relic grants you
