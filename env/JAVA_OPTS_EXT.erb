@@ -1,1 +1,1 @@
-<%= ENV['JAVA_OPTS_EXT'] %> -javaagent:<%= ENV['OPENSHIFT_NEWRELIC_DIR'] %>newrelic.jar
+-javaagent:<%= ENV['OPENSHIFT_NEWRELIC_DIR'] %>newrelic.jar ${JAVA_OPTS_EXT}
