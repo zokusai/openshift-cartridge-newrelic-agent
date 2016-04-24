@@ -19,7 +19,10 @@ Categories:
 Cart-Data:
   - Key: OPENSHIFT_NEWRELIC_LICENSE_KEY
     Type: environment
-    Description: "New Relic license key."
+    Description: "New Relic license key."  
+  - Key: OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS
+    Type: environment
+    Description: "New Relic agent argument for JVM."
 Website: http://newrelic.com/
 Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent/archive/develop.zip
 Help-Topics:
