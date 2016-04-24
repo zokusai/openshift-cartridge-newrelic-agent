@@ -1,9 +1,9 @@
 ---
 Name: newrelic-agent
 Cartridge-Short-Name: NEWRELIC
-Cartridge-Version: '1.0.1'
+Cartridge-Version: '1.0.2'
 Compatible-Versions:
-  - '1.0.1'
+  - '1.0.2'
 Cartridge-Vendor: produban
 Display-Name: New Relic Agent
 Description: The New Relic client connects to your New Relic account and publish
@@ -21,7 +21,7 @@ Cart-Data:
     Type: environment
     Description: "New Relic license key."
 Website: http://newrelic.com/
-Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
+Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent/archive/develop.zip
 Help-Topics:
   Developer Center: https://docs.newrelic.com/docs/java/java-agent-self-installer
 Provides:
