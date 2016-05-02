@@ -7,16 +7,16 @@ function status() {
 }
 
 function start() {
+  client_message "TEST1: $JAVA_OPTS_EXT"
+
   #env_dir="${OPENSHIFT_NEWRELIC_DIR}env"
   #set_env_var 'JAVA_OPTS_EXT' "-javaagent:${OPENSHIFT_NEWRELIC_AGENT}" $env_dir
   
   if [[ $JAVA_OPTS_EXT != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
-    JVM_ARGS="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
-    add_domain_env_var "JAVA_OPTS_EXT=${JVM_ARGS}"
+    export JAVA_OPTS_EXT="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
   fi
   
-  client_result "TEST1: $JVM_ARGS"
-  client_result "TEST2: $JAVA_OPTS_EXT"
+  client_message "TEST2: $JAVA_OPTS_EXT"
     
   client_result "New Relic agent started."
 }
