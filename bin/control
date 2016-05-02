@@ -9,11 +9,11 @@ function status() {
 function start() {
   client_message "TEST1: $JAVA_OPTS_EXT"
 
-  #env_dir="${OPENSHIFT_NEWRELIC_DIR}env"
-  #set_env_var 'JAVA_OPTS_EXT' "-javaagent:${OPENSHIFT_NEWRELIC_AGENT}" $env_dir
-  
   if [[ $JAVA_OPTS_EXT != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
-    export JAVA_OPTS_EXT="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+    env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
+    env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+    
+    set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
   fi
   
   client_message "TEST2: $JAVA_OPTS_EXT"
