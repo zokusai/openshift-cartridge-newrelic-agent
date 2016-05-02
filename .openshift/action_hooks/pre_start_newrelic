@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# The pre_start_cartridge and pre_stop_cartridge hooks are *SOURCED*
+# immediately before (re)starting or stopping the specified cartridge.
+# They are able to make any desired environment variable changes as
+# well as other adjustments to the application environment.
+
+# The post_start_cartridge and post_stop_cartridge hooks are executed
+# immediately after (re)starting or stopping the specified cartridge.
+
+# Exercise caution when adding commands to these hooks.  They can
+# prevent your application from stopping cleanly or starting at all.
+# Application start and stop is subject to different timeouts
+# throughout the system.
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+set -e
+
+if [[ "$JAVA_OPTS_EXT" != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
+  env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
+  env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+  
+  #set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
+  export JAVA_OPTS_EXT="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+fi
+
+client_message "NEWRELIC: $JAVA_OPTS_EXT"

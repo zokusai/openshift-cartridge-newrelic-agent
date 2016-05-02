@@ -13,7 +13,7 @@ function start() {
     env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
     env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
     
-    set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
+    #set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
   fi
   
   client_message "TEST2: $JAVA_OPTS_EXT"
