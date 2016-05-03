@@ -2,7 +2,12 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+client_message "Unset/adjust JAVA_OPTS_EXT environment variable."
+env_file_path=$OPENSHIFT_HOMEDIR/.env/user_vars/JAVA_OPTS_EXT
 
-# Detect primary cartrigde type
+if [ -f $env_file_path ]; then
+  env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
+  env_var_value=`echo $JAVA_OPTS_EXT | sed "s,${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS},,"`
 
-PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
+  set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
+fi

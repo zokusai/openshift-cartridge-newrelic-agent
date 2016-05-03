@@ -27,3 +27,18 @@ case "$PRIMARY_CART" in
     ;;
 esac
 
+client_message "Set/adjust JAVA_OPTS_EXT environment variable."
+env_file_path=$OPENSHIFT_HOMEDIR/.env/user_vars/JAVA_OPTS_EXT
+
+if [ -f $env_file_path ]; then
+  file_owner=`ls -l $env_file_path | awk '{print $3}'`
+  
+  if [ "$file_owner" != "$USER" ]; then
+    chown $USER $env_file_path
+  fi
+fi
+
+env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
+env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+
+set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
