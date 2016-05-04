@@ -7,16 +7,15 @@ function status() {
 }
 
 function start() {
-  client_message "TEST1: $JAVA_OPTS_EXT"
 
   if [[ $JAVA_OPTS_EXT != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
     env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
     env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
     set_env_var 'JAVA_OPTS_EXT' "$env_var_value" $env_dir
-    client_message "TEST2: $JAVA_OPTS_EXT"
+    client_result "New Relic agent re-enabled."  
+  else
+    client_result "New Relic agent enabled."
   fi
-      
-  client_result "New Relic agent started."
 }
 
 case "$1" in
