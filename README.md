@@ -9,7 +9,7 @@ Requirements
 ------------
 
 - A [New Relic](http://www.newrelic.com/) account.
-- OpenShift JBoss AS/EAP/EWS as primary cartridge.
+- OpenShift JBoss AS/EAP/EWS/WildFly as primary cartridge.
 
 
 Install
@@ -39,7 +39,7 @@ Remove
 Known Issues
 ------------
 
-* Non-writable '/var/lib/<GEAR_UUID>/.env/user_vars/JAVA_OPTS_EXT' found.
+* Non-writable '/var/lib/\<GEAR_UUID\>/.env/user_vars/JAVA_OPTS_EXT' found.
 
   If you used the command `rhc set-env` to define the `JAVA_OPTS_EXT` 
   environment variable, then this will have been created with `root` as the
@@ -49,7 +49,7 @@ Known Issues
   then remove it with:
   
   ```
-  rhc env unset JAVA_OPTS_EXT -a <ypur_app_name>
+  rhc env unset JAVA_OPTS_EXT -a <your_app_name>
   ```
   
   Once the cartridge is installed, you could copy back the remaining values to 
