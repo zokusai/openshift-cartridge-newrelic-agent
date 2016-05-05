@@ -14,7 +14,7 @@ PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
 client_message "The primary cartridge name is: ${PRIMARY_CART}"
 
 case "$PRIMARY_CART" in
-  jboss*)
+  jboss*|wildfly)
     client_message "Valid primary cartridge detected."
     CONFIG_SUFFIX=$PRIMARY_CART
     ;;
@@ -22,7 +22,7 @@ case "$PRIMARY_CART" in
   *)
     # Invalid cartridge type
     client_error "Invalid primary cartridge: ${PRIMARY_CART}"
-    client_error "Only JBoss cartridges are allowed: jbossas, jbosseap, jbossews"
+    client_error "Allowed cartridges: jbossas, jbosseap, jbossews, wildfly"
     exit 109
     ;;
 esac
