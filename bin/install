@@ -1,3 +1,53 @@
 #!/bin/bash -eu
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+
+# Create additional directories required
+
+mkdir -p ${OPENSHIFT_NEWRELIC_DIR}/logs
+
+
+# Detect primary cartrigde type
+
+PRIMARY_CART=$(ruby_sdk "primary_cartridge_manifest['Name']")
+client_message "The primary cartridge name is: ${PRIMARY_CART}"
+
+case "$PRIMARY_CART" in
+  jboss*)
+    client_message "Valid primary cartridge detected."
+    CONFIG_SUFFIX=$PRIMARY_CART
+    ;;
+
+  *)
+    # Invalid cartridge type
+    client_error "Invalid primary cartridge: ${PRIMARY_CART}"
+    client_error "Only JBoss cartridges are allowed: jbossas, jbosseap, jbossews"
+    exit 109
+    ;;
+esac
+
+client_message "Set/adjust JAVA_OPTS_EXT environment variable."
+env_dir=${OPENSHIFT_HOMEDIR}/.env/user_vars
+env_file_path=${env_dir}/JAVA_OPTS_EXT
+
+if [ -f $env_file_path ]; then
+  file_owner=`ls -l $env_file_path | awk '{print $3}'`
+  
+  if [ "$file_owner" != "$USER" ]; then
+    client_message "CHOWN"
+    #chown $USER $env_file_path
+  fi
+fi
+
+: "${JAVA_OPTS_EXT:=}"
+
+if [[ "${JAVA_OPTS_EXT}" != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
+  env_var_value="${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS} ${JAVA_OPTS_EXT}"
+  set_env_var 'JAVA_OPTS_EXT' "${env_var_value}" ${env_dir}
+fi
+
+client_message "Restart your application for the changes to take effect."
+client_message "Example: rhc app restart <your_app_name>"
+
+client_result "New Relic agent ready"
