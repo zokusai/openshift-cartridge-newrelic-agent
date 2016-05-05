@@ -31,13 +31,9 @@ client_message "Set/adjust JAVA_OPTS_EXT environment variable."
 env_dir=${OPENSHIFT_HOMEDIR}/.env/user_vars
 env_file_path=${env_dir}/JAVA_OPTS_EXT
 
-if [ -f $env_file_path ]; then
-  file_owner=`ls -l $env_file_path | awk '{print $3}'`
-  
-  if [ "$file_owner" != "$USER" ]; then
-    client_message "CHOWN"
-    #chown $USER $env_file_path
-  fi
+if [ ! -w $env_file_path ]; then
+  client_error "Non-writable '${env_file_path}' found"
+  exit 1
 fi
 
 : "${JAVA_OPTS_EXT:=}"
