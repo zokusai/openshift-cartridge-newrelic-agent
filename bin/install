@@ -31,7 +31,7 @@ client_message "Set/adjust JAVA_OPTS_EXT environment variable."
 env_dir=${OPENSHIFT_HOMEDIR}/.env/user_vars
 env_file_path=${env_dir}/JAVA_OPTS_EXT
 
-if [ ! -w $env_file_path ]; then
+if [[ -f $env_file_path && ! -w $env_file_path  ]]; then
   client_error "Non-writable '${env_file_path}' found"
   exit 1
 fi

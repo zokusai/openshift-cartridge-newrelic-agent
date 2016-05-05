@@ -39,4 +39,23 @@ Remove
 Known Issues
 ------------
 
-* A **JAVA\_OPTS\_EXT** user defined environment variable will override the one defined by the cartridge, so you could inadvertently disable the agent.
+* Non-writable '/var/lib/<GEAR_UUID>/.env/user_vars/JAVA_OPTS_EXT' found.
+
+  If you used the command `rhc set-env` to define the `JAVA_OPTS_EXT` 
+  environment variable, then this will have been created with `root` as the
+  owner of the corresponding file.
+  
+  As a workaround you could take note of the current value of the variable and
+  then remove it with:
+  
+  ```
+  rhc env unset JAVA_OPTS_EXT -a <ypur_app_name>
+  ```
+  
+  Once the cartridge is installed, you could copy back the remaining values to 
+  the variable through a login session:
+  
+  ```
+  rhc ssh -a <your_app_name>
+  vim .env/user_vars/JAVA_OPTS_EXT
+  ```
