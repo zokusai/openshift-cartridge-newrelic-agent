@@ -6,7 +6,7 @@ function status() {
   client_result "New Relic agent is enabled."
 }
 
-function start() {
+function configure_agent() {
 
   if [[ $JAVA_OPTS_EXT != *"${OPENSHIFT_NEWRELIC_AGENT_JAVA_OPTS}"* ]]; then
     env_dir=$OPENSHIFT_HOMEDIR/.env/user_vars
@@ -19,7 +19,12 @@ function start() {
 }
 
 case "$1" in
-  status)       status ;;
-  start)        start ;;
-  *)         	  exit 0
+  status)       
+    status 
+    ;;
+  start|restart|reload)        
+    configure_agent 
+    ;;
+  *)         	  
+    exit 0
 esac
