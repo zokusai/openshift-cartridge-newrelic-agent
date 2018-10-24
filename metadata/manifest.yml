@@ -19,11 +19,12 @@ Categories:
 Cart-Data:
   - Key: OPENSHIFT_NEWRELIC_LICENSE_KEY
     Type: environment
-    Description: "New Relic license key."
+    Description: "6823b0ce0e152e20c1d8390ce02e23248664d59a"
 Website: http://newrelic.com/
 Source-Url: https://github.com/zokusai/openshift-cartridge-newrelic-agent.git
 Help-Topics:
   Developer Center: https://docs.newrelic.com/docs/java/java-agent-self-installer
+  app_name: qas1
 Provides:
   - newrelic-agent-3.11.0
   - newrelic-agent
